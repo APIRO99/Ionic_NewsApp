@@ -1,0 +1,28 @@
+<ion-card 
+  color="dark">
+        
+  <ion-card-header>
+    <ion-card-subtitle>
+
+      <span class="text-primary">{{i +1}}  </span>
+      <span class="article-source-name">{{  article.source.name  }}</span>
+
+      <div class="article-more">
+        <ion-button (click)="presentActionSheet()" fill="clear">
+          <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+
+    </ion-card-subtitle>
+    <ion-card-title (click)="redirectToArticle()">{{  article.title  }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-img 
+    *ngIf="article.urlToImage" 
+    [src]="article.urlToImage"
+    (click)="redirectToArticle()"></ion-img>
+
+  <ion-card-content (click)="redirectToArticle()">{{  article.description  }}</ion-card-content>
+
+</ion-card>
