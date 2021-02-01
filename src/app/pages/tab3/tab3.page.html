@@ -8,5 +8,13 @@
 
 <ion-content color="dark">
 
+  <div 
+    class="NoFavoriteText"
+    *ngIf="localDataService.articles.length === 0">
+    No hay favoritos prro
+  </div>
+
+
   <app-articles [articles]="localDataService.articles"></app-articles>
+
 </ion-content>
