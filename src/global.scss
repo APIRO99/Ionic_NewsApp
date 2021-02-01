@@ -51,6 +51,11 @@
   color: var( --ion-color-primary) !important;
 }
 
+.ion-tab-button {
+  background: var( --ion-color-dark) !important;
+}
+
+
 // Animaciones
 .animated {
   -webkit-animation-duration: 1s;
@@ -72,6 +77,10 @@
   to {
     opacity: 1;
   }
+}
+
+ion-header {
+  background: var( --ion-color-dark ) !important;
 }
 
 @keyframes fadeIn {
