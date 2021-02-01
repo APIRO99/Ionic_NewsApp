@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Article } from 'src/app/interfaces';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { LocalDataService } from '../../services/local-data.service';
 
@@ -16,7 +16,8 @@ export class ArticleComponent implements OnInit {
     private iab: InAppBrowser,
     private socialSharing: SocialSharing,
     private asCtrl: ActionSheetController,
-    private localDataService: LocalDataService
+    private localDataService: LocalDataService,
+    private toastController: ToastController
   ) { }
   ngOnInit() { }
 
@@ -35,6 +36,7 @@ export class ArticleComponent implements OnInit {
         cssClass: 'action-dark',
         handler: () => {
           this.localDataService.deleteArticle( this.article );
+          this.presentToast('Removed from Favorites');
         }
       } : {
         text: 'Favorite',
@@ -42,6 +44,7 @@ export class ArticleComponent implements OnInit {
         cssClass: 'action-dark',
         handler: () => {
           this.localDataService.saveArticle( this.article );
+          this.presentToast('Added to Favorites');
         }
       }
 
@@ -71,6 +74,14 @@ export class ArticleComponent implements OnInit {
       }]
     });
     await actionSheet.present();
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500
+    });
+    toast.present();
   }
 
 }

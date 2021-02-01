@@ -5,6 +5,7 @@
       *ngFor="let article of articles; let i = index">
       
       <app-article 
+        class="animated fadiIn"
         [article]="article" 
         [i]="i"
         [onFavorite]="onFavorite">
