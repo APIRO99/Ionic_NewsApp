@@ -4,7 +4,11 @@
       size="12" size-md="6" size-lg="4" size-xl="3"
       *ngFor="let article of articles; let i = index">
       
-      <app-article [article]="article" [i]="i"></app-article>
+      <app-article 
+        [article]="article" 
+        [i]="i"
+        [onFavorite]="onFavorite">
+      </app-article>
 
     </ion-col>
   </ion-row>

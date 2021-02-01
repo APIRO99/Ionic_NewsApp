@@ -15,6 +15,9 @@
   </div>
 
 
-  <app-articles [articles]="localDataService.articles"></app-articles>
+  <app-articles 
+    [articles]="localDataService.articles"
+    [onFavorite]="true">
+  </app-articles>
 
 </ion-content>

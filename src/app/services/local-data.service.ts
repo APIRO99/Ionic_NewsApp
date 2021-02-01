@@ -21,6 +21,11 @@ export class LocalDataService {
     return exists;
   }
 
+  deleteArticle = (article: Article) => {
+    this.articles = this.articles.filter(art => art.title != article.title);
+    this.storage.set('fav', this.articles);
+  }
+
   loadFavorite = async () => {
     const favs = await this.storage.get('fav');
     if (favs) this.articles = favs;

@@ -22,10 +22,30 @@ export class ArticleComponent implements OnInit {
 
   @Input() article: Article;
   @Input() i: number;
+  @Input() onFavorite;
 
   redirectToArticle = () => this.iab.create(this.article.url, '_system');
 
   async presentActionSheet() {
+
+    const favButton = (this.onFavorite) ?
+      {
+        text: 'Remove Favorite',
+        icon: 'trash-outline',
+        cssClass: 'action-dark',
+        handler: () => {
+          this.localDataService.deleteArticle( this.article );
+        }
+      } : {
+        text: 'Favorite',
+        icon: 'star',
+        cssClass: 'action-dark',
+        handler: () => {
+          this.localDataService.saveArticle( this.article );
+        }
+      }
+
+
     const actionSheet = await this.asCtrl.create({
       cssClass: 'my-custom-class',
       buttons: [{
@@ -40,14 +60,7 @@ export class ArticleComponent implements OnInit {
             this.article.url
           )
         }
-      }, {
-        text: 'Favorite',
-        icon: 'star',
-        cssClass: 'action-dark',
-        handler: () => {
-          this.localDataService.saveArticle( this.article );
-        }
-      }, {
+      }, favButton, {
         text: 'Cancel',
         icon: 'close',
         role: 'cancel',

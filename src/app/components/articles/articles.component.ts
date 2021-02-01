@@ -11,5 +11,6 @@ export class ArticlesComponent implements OnInit {
   ngOnInit() {}
 
   @Input() articles: Article[] = [];
+  @Input() onFavorite = false;
 
 }
